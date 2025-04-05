@@ -1,5 +1,25 @@
-# 使用官方 Alpine 镜像作为基础
-FROM alpine:latest
+# https://hub.docker.com/r/nvidia/cuda
+FROM ubuntu:24.04
 
-# 运行一个简单的命令
-CMD ["echo", "Hello, Docker!"]
+ENV TZ Asia/Shanghai
+ENV LANG zh_CN.UTF-8
+RUN echo 'root:root' |chpasswd
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Update
+RUN apt-get update
+
+# Install SSH
+RUN apt-get install -y openssh-server
+RUN mkdir -p /var/run/sshd
+RUN mkdir -p /root/.ssh/
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
+
+RUN apt-get install python3-pip -y
+RUN pip3 install pyvista numpy
+
+
+RUN ssh-keygen -A
+EXPOSE 22
+
