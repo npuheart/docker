@@ -17,7 +17,7 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 
 RUN apt-get install python3-full python3-pip  python3-venv -y
-RUN python3 -m venv ./venv && source ./venv/venv/bin/pip install pyvista numpy
+RUN python3 -m venv ./venv && ./venv/bin/pip install pyvista numpy
 
 RUN ssh-keygen -A
 EXPOSE 22
