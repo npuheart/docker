@@ -9,6 +9,12 @@ There are two related branches:
    - Handling XML-format mesh functions (fiber directions, material properties, boundary types, etc.)  
 2. **`mesh` branch** – Built on the newer Ubuntu 24.04 base, designed to read newer mesh formats using PyVista and other tools. It converts meshes into text files for easier data reading in containers based on the `fenics` image.
 
+```
+sudo docker run -it ghcr.io/npuheart/docker:v0.0.5 /bin/bash
+sudo docker run -it ghcr.io/npuheart/docker:v0.0.3 /bin/bash
+```
+
+
 ## IB-FEniCS
 
 WIP
