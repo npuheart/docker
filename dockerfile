@@ -1,5 +1,5 @@
 # https://hub.docker.com/r/nvidia/cuda
-FROM ubuntu:24.04
+FROM ubuntu:20.04
 
 ENV TZ=Asia/Shanghai
 ENV LANG=zh_CN.UTF-8
@@ -15,9 +15,6 @@ RUN mkdir -p /var/run/sshd
 RUN mkdir -p /root/.ssh/
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
-
-RUN apt-get install python3-full python3-pip  python3-venv -y
-RUN python3 -m venv ./venv && ./venv/bin/pip install pyvista numpy
-
+RUN apt-get install fenics -y
 RUN ssh-keygen -A
 EXPOSE 22
