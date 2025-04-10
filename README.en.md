@@ -54,3 +54,16 @@ IB-MPM
 ## SimCardiac v7.0
 
 IB-MPM
+
+
+
+-----------------------------------
+#### ghcr.io/npuheart/docker:v0.0.6
+- nvidia/cuda:12.8.1-base-ubuntu24.04
+- gcc 11.4.0
+- spack 0.23.0
+
+-----------------------------------
+#### ghcr.io/npuheart/docker:v0.0.7
+- ghcr.io/npuheart/docker:v0.0.6
+- [config/spack-fenics-kokkos-1.yaml](config/spack-fenics-kokkos-1.yaml)

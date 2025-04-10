@@ -1,0 +1,23 @@
+# 通过 gcc@11.4.0 能够编译成功
+# spack load py-pip
+spack:
+  specs:
+  - kokkos-kernels@4.3.00 +cuda cuda_arch=89 %gcc@11.4.0
+  - kokkos@4.3.00 ~openmp +cuda +cuda_lambda +cuda_constexpr +wrapper cuda_arch=89 cxxstd=20
+  # FEniCS
+  - fenics@2019.1.0.post0 +zlib build_type=Release cflags="-O3"
+  - python@3.10.10 +optimizations
+  - boost@1.71.0
+  - py-cython@0.29.36
+  # NPUHeart
+  - fmt@10.1.1
+  - py-pip
+  - py-matplotlib
+  - spdlog
+  view: true
+  concretizer:
+    unify: true
+
+  packages:
+    all:
+      compiler: [gcc@11.4.0]
