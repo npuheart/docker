@@ -2,8 +2,8 @@
 # spack load py-pip
 spack:
   specs:
-  - kokkos-kernels@4.0.0 +cuda cuda_arch=89 %gcc@11.4.0
-  - kokkos@4.0.0 ~openmp +cuda +cuda_lambda +cuda_constexpr +wrapper cuda_arch=89 cxxstd=20
+  - kokkos-kernels +cuda cuda_arch=89 %gcc@11.4.0
+  - kokkos ~openmp +cuda +cuda_lambda +cuda_constexpr +wrapper cuda_arch=89 cxxstd=20
   # FEniCS
   - fenics@2019.1.0.post0 +zlib build_type=Release cflags="-O3"
   - petsc@3.14.0 +mumps +hdf5
