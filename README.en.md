@@ -64,6 +64,17 @@ IB-MPM
 
 # 可用的镜像
 
+
+
+#### ghcr.io/npuheart/docker:v0.0.5
+- Ubuntu 20.04
+- fenics 2019.1
+- mshr
+
+#### ghcr.io/npuheart/docker:v0.0.3 
+- Ubuntu 24.04
+- PyVista
+
 #### ghcr.io/npuheart/docker:v0.0.6
 - nvidia/cuda:12.8.1-base-ubuntu24.04
 - gcc 11.4.0
@@ -92,4 +103,18 @@ IB-MPM
 - ghcr.io/npuheart/docker:v0.1.6
 - [config/spack-fenics-kokkos-3.yaml](config/spack-fenics-kokkos-3.yaml)
 - [config/packages-1.yaml](config/packages-1.yaml)
-在这个镜像上可运行 `tag:v0.1.7-post1` , 左心室的舒张与收缩。
+在这个镜像上可运行 `tag:v0.1.7-post1` , 左心室的舒张与收缩。但是有如下缺点：
+1. 需要额外安装 zlib
+2. 以 root 用户的身份运行程序
+
+-----------------------------------
+#### ghcr.io/npuheart/docker:v0.2.6
+- nvidia/cuda:12.6.3-devel-ubuntu24.04
+- gcc 11.4.0
+- spack 0.23.0
+
+1. 程序安装在 npuheart 用户目录下
+2. npuheart 拥有 sudo 权限
+3. 能读取编译运行宿主机上的代码，但是不能修改
+4. 需要对生成的数据文件使用chown命令才能在宿主机读取
+4. [TODO]可以写入ssh密钥，以拥有github的访问权限
