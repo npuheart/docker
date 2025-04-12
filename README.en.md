@@ -86,3 +86,10 @@ IB-MPM
 - [config/spack-fenics-kokkos-1.yaml](config/spack-fenics-kokkos-1.yaml)
 - [config/packages-1.yaml](config/packages-1.yaml)
 
+
+-----------------------------------
+#### ghcr.io/npuheart/docker:v0.1.7-post1
+- ghcr.io/npuheart/docker:v0.1.6
+- [config/spack-fenics-kokkos-3.yaml](config/spack-fenics-kokkos-3.yaml)
+- [config/packages-1.yaml](config/packages-1.yaml)
+在这个镜像上可运行 `tag:v0.1.7-post1` , 左心室的舒张与收缩。
