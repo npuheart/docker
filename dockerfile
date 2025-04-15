@@ -46,9 +46,9 @@ RUN apt-get update && \
 # Step 3: Install Spack as 'npuheart'
 USER npuheart
 RUN wget https://github.com/spack/spack/archive/refs/tags/${SPACK_VERSION}.tar.gz && \
-    tar -zxf spack-${SPACK_VERSION}.tar.gz && \
-    rm spack-${SPACK_VERSION}.tar.gz && \
-    mv spack-${SPACK_VERSION} spack
+    tar -zxf ${SPACK_VERSION}.tar.gz && \
+    rm ${SPACK_VERSION}.tar.gz && \
+    mv ${SPACK_VERSION} spack
 
 # Step 3 : Install gcc
 RUN . ~/spack/share/spack/setup-env.sh && \
