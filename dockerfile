@@ -48,7 +48,7 @@ USER npuheart
 RUN wget https://github.com/spack/spack/archive/refs/tags/${SPACK_VERSION}.tar.gz && \
     tar -zxf ${SPACK_VERSION}.tar.gz && \
     rm ${SPACK_VERSION}.tar.gz && \
-    mv ${SPACK_VERSION} spack
+    mv spack-${SPACK_VERSION} spack
 
 # Step 3 : Install gcc
 RUN . ~/spack/share/spack/setup-env.sh && \
