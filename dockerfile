@@ -2,7 +2,7 @@
 # Spack Dockerfile
 ################################################################################
 # Step 1 : Create a base image
-FROM  nvidia/cuda:12.8.1-devel-ubuntu24.04 AS builder
+FROM  nvidia/cuda:12.8.1-base-ubuntu24.04 AS builder
 ENV TZ=Asia/Shanghai
 ENV LANG=zh_CN.UTF-8
 ENV SPACK_VERSION=v1.0.0-alpha.4
