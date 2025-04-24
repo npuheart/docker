@@ -3,14 +3,14 @@
 # ARG CUDA_VERSION=12.4.0
 FROM ubuntu:24.04
 
-RUN apt-get update
-RUN apt-get install -y wget
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
-RUN dpkg -i cuda-keyring_1.1-1_all.deb
-RUN apt-get update
-RUN apt-get install -y cuda-toolkit
-RUN apt-get install -y nvidia-gds
-RUN apt-get install -y tensorrt
+RUN apt-get update \
+    && apt-get install -y wget \
+    && wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb \
+    && dpkg -i cuda-keyring_1.1-1_all.deb \
+    && apt-get update \
+    && apt-get install -y cuda-toolkit \
+    && apt-get install -y nvidia-gds \
+    && apt-get install -y tensorrt \
     && rm -rf /var/lib/apt/lists/*
 # RUN dpkg -i cuda-keyring_1.1-1_all.deb
 
