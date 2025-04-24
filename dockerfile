@@ -10,6 +10,7 @@ RUN dpkg -i cuda-keyring_1.1-1_all.deb
 RUN apt-get update
 RUN apt-get install -y cuda-toolkit
 RUN apt-get install -y nvidia-gds
+RUN apt-get install -y tensorrt
 # RUN dpkg -i cuda-keyring_1.1-1_all.deb
 
 # FROM nvidia/cuda:${CUDA_VERSION}-devel-ubuntu22.04
