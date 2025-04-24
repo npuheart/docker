@@ -4,12 +4,12 @@
 FROM ubuntu:24.04
 
 RUN apt-get update
-RUN apt-get install wget
+RUN apt-get install -y wget
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
 RUN dpkg -i cuda-keyring_1.1-1_all.deb
 RUN apt-get update
-RUN apt-get install cuda-toolkit
-RUN apt-get install nvidia-gds
+RUN apt-get install -y cuda-toolkit
+RUN apt-get install -y nvidia-gds
 # RUN dpkg -i cuda-keyring_1.1-1_all.deb
 
 # FROM nvidia/cuda:${CUDA_VERSION}-devel-ubuntu22.04
