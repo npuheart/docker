@@ -1,21 +1,45 @@
-
-
-# ARG CUDA_VERSION=12.4.0
+# docker build -t cuda-trt .
 FROM ubuntu:24.04
 
-RUN apt-get update \
-    && apt-get install -y wget \
-    && wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb \
-    && dpkg -i cuda-keyring_1.1-1_all.deb \
-    && apt-get update \
-    && apt-get install -y cuda-toolkit \
-    && apt-get install -y nvidia-gds \
-    && apt-get install -y tensorrt \
-    && rm -rf /var/lib/apt/lists/*
-# RUN dpkg -i cuda-keyring_1.1-1_all.deb
 
 
-RUN wget https://developer.download.nvidia.com/compute/machine-learning/tensorrt/10.9.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.9.0-cuda-12.8_1.0-1_amd64.deb
+ENV TZ=Asia/Shanghai
+ENV LANG=zh_CN.UTF-8
+ENV SPACK_VERSION=v1.0.0-alpha.4
+ENV GCC_VERSION=14.2.0
+
+# 设置root用户密码为root
+RUN echo 'root:root' |chpasswd  
+# 设置非交互式安装        
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install SSH
+RUN apt-get update && \
+    apt-get install -yq openssh-server && \
+    mkdir -p /var/run/sshd && \
+    mkdir -p /root/.ssh/ && \
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN apt-get update && \
+    apt-get install -y wget && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    apt-get update && \
+    apt-get install -y cuda-toolkit && \
+    apt-get install -y tensorrt && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
+
+
+
+
+
+
+
 
 # FROM nvidia/cuda:${CUDA_VERSION}-devel-ubuntu22.04
 # LABEL maintainer="NVIDIA CORPORATION"

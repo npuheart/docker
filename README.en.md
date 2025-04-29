@@ -1,8 +1,22 @@
 # Docker Images Used by npuheart  
 
 
+## 本地生成镜像并上传到 ghc.io
+
+
+生成token，勾选：
+[x] write:packages
+[x] read:packages
+[x] repo （如果需要上传到私有仓库的话）
+
+```
+sudo docker build -t cuda-trt .
+sudo docker login ghcr.io -u shaoyaoqian # 登陆
+docker tag cuda-trt ghcr.io/npuheart/docker:cuda-trt-v0.0
+sudo docker push ghcr.io/npuheart/docker:cuda-trt-v0.0
+```
 ## 运行之前
-docker已经支持
+docker已经支持GPU
 ```
 sudo docker run -it --rm --gpus all nvidia/cuda:12.8.1-base-ubuntu24.04 nvidia-smi
 ```
