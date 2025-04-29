@@ -1,13 +1,11 @@
 name: simcardiac
 services:
-  cuda_120603_GCC_1104:
-    image: ghcr.io/npuheart/docker:v0.1.7-post1
+  cuda_trt:
+    image: ghcr.io/npuheart/docker:cuda-trt-v0.0
     # user: "1005:1005"
     volumes:
         - ./log:/var/log
-        - .:/root/simcardiac
-        - /home/fenics/mesh/cardiac/LV_1:/root/mesh
-        - /home/fenics/data/outputs-npuheart:/root/outputs-npuheart
+        - ../:/root/DeepHeart
     ports:
       - "2224:22"
     command: /usr/sbin/sshd -D
