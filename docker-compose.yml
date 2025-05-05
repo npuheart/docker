@@ -1,11 +1,11 @@
 name: simcardiac
 services:
   cuda_trt:
-    image: ghcr.io/npuheart/docker:cuda-trt-v0.0
+    image: ghcr.io/npuheart/docker:cuda-trt-v0.1
     # user: "1005:1005"
     volumes:
         - ./log:/var/log
-        - ../:/root/DeepHeart
+        - ../multi-gpus:/root/multi-gpus
     ports:
       - "2224:22"
     command: /usr/sbin/sshd -D

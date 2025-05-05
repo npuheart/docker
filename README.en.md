@@ -12,9 +12,10 @@
 ```
 sudo docker build -t cuda-trt .
 sudo docker login ghcr.io -u shaoyaoqian # 登陆
-sudo docker tag cuda-trt ghcr.io/npuheart/docker:cuda-trt-v0.0
-sudo docker push ghcr.io/npuheart/docker:cuda-trt-v0.0
+sudo docker tag cuda-trt ghcr.io/npuheart/docker:cuda-trt-v0.1
+sudo docker push ghcr.io/npuheart/docker:cuda-trt-v0.1
 ```
+
 ## 运行之前
 docker已经支持GPU
 ```

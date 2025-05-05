@@ -1,8 +1,6 @@
 # docker build -t cuda-trt .
 FROM ubuntu:24.04
 
-
-
 ENV TZ=Asia/Shanghai
 ENV LANG=zh_CN.UTF-8
 ENV SPACK_VERSION=v1.0.0-alpha.4
@@ -33,11 +31,20 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
+RUN apt-get update && \
+    apt-get install -y libopenmpi-dev openmpi-bin pybind11-dev cmake && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
+RUN apt-get update && \
+    apt-get install -y libopenmpi-dev openmpi-bin pybind11-dev python3-venv cmake && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
-
+RUN echo -e "\n# Add CUDA 12.8 to PATH and LD_LIBRARY_PATH" >> ~/.bashrc && \
+    echo "export PATH=\${PATH}:/usr/local/cuda-12.8/bin" >> ~/.bashrc && \
+    echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/cuda-12.8/lib64" >> ~/.bashrc
 
 
 
