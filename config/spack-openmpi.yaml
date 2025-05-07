@@ -1,0 +1,26 @@
+spack:
+  specs:
+  - openmpi@ 5.0.5 +cuda
+  - py-matplotlib
+  - muparser
+  - fmt@10.1.1
+  - nlohmann-json@3.11.2
+  - py-pip
+  - spdlog
+  view: true
+  concretizer:
+    unify: true
+
+
+# git clone -c feature.manyFiles=true https://github.com/spack/spack.git
+# scp -P 9999 -r npuheart9@10.70.181.65:~/spack/var/spack/cache ~/spack/var/spack/
+# scp -P 9999 -r npuheart9@10.70.181.65:~/clash ~/
+# . ~/spack/share/spack/setup-env.sh
+# spack compiler find
+# spack env create fenics_kokkos
+# spack env activate fenics_kokkos -p
+# ~/spack/var/spack/environments/fenics_kokkos/spack.yaml 
+# After change the spack.yml:
+# spack concretize -f
+# spack install
+
