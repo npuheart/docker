@@ -50,9 +50,9 @@ RUN wget https://github.com/spack/spack/releases/download/v${SPACK_VERSION}/spac
 ADD config/packages-1.yaml /home/npuheart/.spack/packages.yaml
 RUN sudo chown -R npuheart:npuheart /home/npuheart/.spack
 RUN . ~/spack/share/spack/setup-env.sh && spack env create gpus
-ADD gpus.yaml gpus.yaml
-RUN sudo chown npuheart:npuheart gpus.yaml
-RUN mv config/spack-openmpi.yaml spack/var/spack/environments/gpus/spack.yaml
+ADD config/spack-openmpi.yaml spack-openmpi.yaml
+RUN sudo chown npuheart:npuheart spack-openmpi.yaml
+RUN mv spack-openmpi.yaml spack/var/spack/environments/gpus/spack.yaml
 RUN . ~/spack/share/spack/setup-env.sh && \
     spack env activate -p gpus && \
     spack concretize -f && \
