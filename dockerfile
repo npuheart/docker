@@ -39,29 +39,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-USER npuheart
-WORKDIR /home/npuheart
-
-RUN wget https://github.com/spack/spack/releases/download/v${SPACK_VERSION}/spack-${SPACK_VERSION}.tar.gz && \
-    tar -zxf spack-${SPACK_VERSION}.tar.gz && \
-    rm spack-${SPACK_VERSION}.tar.gz && \
-    mv spack-${SPACK_VERSION} spack
-
-RUN . ~/spack/share/spack/setup-env.sh && \
-    spack install gcc@11.4.0 && \
-    spack load gcc@11.4.0 && \
-    spack compiler find && \
-    spack clean --all
-
-# Step 4 : Install
-RUN . ~/spack/share/spack/setup-env.sh && spack env create ${SPACK_FENICS}
-ADD config/spack-fenics-1.yaml ${SPACK_FENICS}.yaml
-RUN sudo chown npuheart:npuheart ${SPACK_FENICS}.yaml
-RUN mv ${SPACK_FENICS}.yaml spack/var/spack/environments/${SPACK_FENICS}/spack.yaml
-
-RUN . ~/spack/share/spack/setup-env.sh && \
-    spack env activate -p gpus && \
-    spack concretize -f && \
-    spack install && \
-    spack env deactivate && \
-    spack clean --all
+RUN add-apt-repository ppa:fenics-packages/fenics && \
+    apt update && \
+    apt install fenicsx && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
