@@ -60,7 +60,7 @@ RUN sudo chown npuheart:npuheart ${SPACK_FENICS}.yaml
 RUN mv ${SPACK_FENICS}.yaml spack/var/spack/environments/${SPACK_FENICS}/spack.yaml
 
 RUN . ~/spack/share/spack/setup-env.sh && \
-    spack env activate -p gpus && \
+    spack env activate -p ${SPACK_FENICS} && \
     spack concretize -f && \
     spack install && \
     spack env deactivate && \
