@@ -2,12 +2,11 @@
 # Spack Dockerfile
 ################################################################################
 # Step 1 : Create a base image
-FROM  nvidia/cuda:12.6.3-devel-ubuntu24.04 AS builder
+FROM  ubuntu:20.04 AS builder
 ENV TZ=Asia/Shanghai
 ENV LANG=zh_CN.UTF-8
 ENV UID=1010
 ENV GID=1010
-ENV SPACK_VERSION=0.23.0
 
 # 设置root用户密码为root
 RUN echo 'root:root' |chpasswd  
@@ -31,34 +30,21 @@ RUN apt-get update && \
 
 RUN apt-get update && \
     apt-get install -yq sudo && \
-    groupadd -g ${GID} npuheart && \
-    useradd -m -s /bin/bash -u ${UID} -g ${GID} npuheart && \
-    echo "npuheart:npuheart" | chpasswd && \
-    echo "npuheart ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    groupadd -g ${GID} simcardiac && \
+    useradd -m -s /bin/bash -u ${UID} -g ${GID} simcardiac && \
+    echo "simcardiac:simcardiac" | chpasswd && \
+    echo "simcardiac ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-USER npuheart
-WORKDIR /home/npuheart
+RUN apt-get update && \
+    apt-get install -yq fenics && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN wget https://github.com/spack/spack/releases/download/v${SPACK_VERSION}/spack-${SPACK_VERSION}.tar.gz && \
-    tar -zxf spack-${SPACK_VERSION}.tar.gz && \
-    rm spack-${SPACK_VERSION}.tar.gz && \
-    mv spack-${SPACK_VERSION} spack
+USER simcardiac
+WORKDIR /home/simcardiac
 
-# Step 4 : Install
-ADD config/packages-1.yaml /home/npuheart/.spack/packages.yaml
-RUN sudo chown -R npuheart:npuheart /home/npuheart/.spack
-RUN . ~/spack/share/spack/setup-env.sh && spack env create gpus
-ADD config/spack-openmpi.yaml spack-openmpi.yaml
-RUN sudo chown npuheart:npuheart spack-openmpi.yaml
-RUN mv spack-openmpi.yaml spack/var/spack/environments/gpus/spack.yaml
-RUN . ~/spack/share/spack/setup-env.sh && \
-    spack env activate -p gpus && \
-    spack concretize -f && \
-    spack install && \
-    spack env deactivate && \
-    spack clean --all
 
 
 
