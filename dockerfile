@@ -39,7 +39,9 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN add-apt-repository ppa:fenics-packages/fenics && \
+RUN apt update && \
+    sudo apt install -y software-properties-common && \
+    add-apt-repository ppa:fenics-packages/fenics && \
     apt update && \
     apt install fenicsx && \
     apt-get clean && \
