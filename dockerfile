@@ -65,3 +65,4 @@ RUN . ~/spack/share/spack/setup-env.sh && \
     spack install && \
     spack env deactivate && \
     spack clean --all
+    
