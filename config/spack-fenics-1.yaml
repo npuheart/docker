@@ -1,0 +1,16 @@
+spack:
+  specs:
+  - fenics@2019.1.0.post0 +zlib build_type=Release cflags="-O3" % gcc@11.4.0
+  - petsc@3.14.0 +mumps +hdf5
+  - boost@1.71.0
+  - openmpi@4.0.6
+  - python@3.10.10 +optimizations
+  - py-matplotlib
+  - py-cython@0.29.36
+  view: true
+  concretizer:
+    unify: true
+
+  packages:
+    all:
+      compiler: [gcc@11.4.0]
